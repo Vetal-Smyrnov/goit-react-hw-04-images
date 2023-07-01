@@ -1,19 +1,19 @@
-import { ThreeDots } from 'react-loader-spinner';
+import { Audio } from 'react-loader-spinner';
+import css from './Loader.module.css';
 
 const Loader = () => {
   return (
-    <>
-      <ThreeDots
+    <div className={css.Loader}>
+      <Audio
         height="80"
         width="80"
         radius="9"
-        color="#3f51b5"
-        ariaLabel="three-dots-loading"
-        wrapperStyle={{ alignItems: 'center', justifyContent: 'center' }}
-        wrapperClassName=""
-        visible={true}
+        color="green"
+        ariaLabel="loading"
+        wrapperStyle
+        className="loader-audio"
       />
-    </>
+    </div>
   );
 };
 

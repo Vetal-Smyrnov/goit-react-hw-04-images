@@ -1,33 +1,32 @@
-import ImageGalleryItem from '../ImageGalleryItem';
-import { ImageGalleryList } from './ImageGallery.styled';
+import ImageGalleryItem from '../ImageGalleryItem/ImageGalleryItem';
 import PropTypes from 'prop-types';
+import css from './ImageGallery.module.css';
 
-const ImageGallery = ({ cards, handleModal }) => {
+const ImageGallery = ({ pictures, onClick }) => {
   return (
-    <ImageGalleryList>
-      {cards.map(({ id, webformatURL, largeImageURL, tags }) => (
+    <ul className={css.ImageGallery}>
+      {pictures.map(item => (
         <ImageGalleryItem
-          key={id}
-          smallImg={webformatURL}
-          bigImg={largeImageURL}
-          alt={tags}
-          id={id}
-          handleModal={handleModal}
+          key={item.id}
+          src={item.webformatURL}
+          alt={item.pageURL}
+          onClick={onClick}
+          id={item.id}
         />
       ))}
-    </ImageGalleryList>
+    </ul>
   );
 };
 
 export default ImageGallery;
 
 ImageGallery.propTypes = {
-  cards: PropTypes.arrayOf(
-    PropTypes.exact({
+  pictures: PropTypes.arrayOf(
+    PropTypes.shape({
       id: PropTypes.number.isRequired,
       webformatURL: PropTypes.string.isRequired,
-      largeImageURL: PropTypes.string.isRequired,
-      tags: PropTypes.string.isRequired,
+      pageURL: PropTypes.string.isRequired,
     })
-  ),
+  ).isRequired,
+  onClick: PropTypes.func.isRequired,
 };

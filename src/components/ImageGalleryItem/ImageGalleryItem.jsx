@@ -1,22 +1,20 @@
-import { useState } from 'react';
-import { GalleryItem, GalleryImage } from './ImageGalleryItem.styled';
-import Modal from '../Modal';
+import css from './ImageGalleryItem.module.css';
 
-const ImageGalleryItem = ({ smallImg, bigImg, alt }) => {
-  const [showModal, setShowModal] = useState(false);
-
-  const togleModal = () => {
-    setShowModal(prev => !prev);
+const ImageGalleryItem = ({ id, src, alt, onClick }) => {
+  const handleClick = () => {
+    onClick(id);
+    
   };
 
   return (
-    <GalleryItem>
-      <GalleryImage src={smallImg} alt={alt} onClick={togleModal} />
-      {showModal && (
-        <Modal tags={alt} largeImageURL={bigImg} onClose={() => togleModal()} />
-      )}
-    </GalleryItem>
+    <li className={css.ImageGalleryItem}>
+      <img
+        className={css['ImageGalleryItem-image']}
+        src={src}
+        alt={alt}
+        onClick={handleClick}
+      />
+    </li>
   );
 };
-
 export default ImageGalleryItem;
